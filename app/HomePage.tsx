@@ -61,43 +61,6 @@ export default function HomePage() {
           </p>
         </div>
       </div>
-
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-          How It Works
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              1
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Create Account</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Sign up with your email and set up your profile
-            </p>
-          </div>
-          
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              2
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Schedule Sessions</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Create your quiet study time blocks with custom durations
-            </p>
-          </div>
-          
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              3
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Get Notified</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Receive email reminders 10 minutes before each session
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
