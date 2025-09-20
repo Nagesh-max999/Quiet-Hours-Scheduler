@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true,
+    serverActions: {}, // must be an object, not a boolean
   },
-  images: {
-    domains: ['images.unsplash.com'],
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
