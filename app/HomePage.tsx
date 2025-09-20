@@ -3,101 +3,50 @@ import { Clock, Calendar, Bell, Shield } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          Quiet Hours Scheduler
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center items-center px-4 py-16">
+      
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-pulse">
+          Welcome to Quick Hours Scheduler 🚀
         </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Create focused study time blocks and get notified 10 minutes before each session starts. 
-          Stay organized and maintain your study routine.
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-6">
+          Plan focused study sessions, get notified 10 minutes before they start, 
+          and stay on top of your productivity.
         </p>
-        <div className="flex gap-4 justify-center">
-          <Link 
+        <div className="flex justify-center gap-4">
+          <Link
             href="/auth/login"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-transform transform hover:scale-105"
           >
             Get Started
           </Link>
-          <Link 
+          <Link
             href="/dashboard"
-            className="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-8 py-3 rounded-lg font-semibold transition-colors"
+            className="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-semibold transition-transform transform hover:scale-105"
           >
             Dashboard
           </Link>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-        <div className="text-center p-6 study-card">
-          <Clock className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Time Blocks</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Create custom study time blocks that fit your schedule
-          </p>
-        </div>
-        
-        <div className="text-center p-6 study-card">
-          <Bell className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Smart Notifications</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Get email reminders 10 minutes before each session
-          </p>
-        </div>
-        
-        <div className="text-center p-6 study-card">
-          <Calendar className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">No Overlaps</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Intelligent scheduling prevents conflicting time blocks
-          </p>
-        </div>
-        
-        <div className="text-center p-6 study-card">
-          <Shield className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Secure & Private</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Your data is protected with enterprise-grade security
-          </p>
-        </div>
+      {/* Features */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <Feature icon={<Clock className="w-12 h-12 text-indigo-600 mx-auto mb-2" />} title="Time Blocks" desc="Create custom study blocks that fit your schedule." />
+        <Feature icon={<Bell className="w-12 h-12 text-indigo-600 mx-auto mb-2" />} title="Smart Notifications" desc="Get reminders 10 minutes before each session." />
+        <Feature icon={<Calendar className="w-12 h-12 text-indigo-600 mx-auto mb-2" />} title="No Overlaps" desc="Intelligent scheduling prevents conflicts." />
+        <Feature icon={<Shield className="w-12 h-12 text-indigo-600 mx-auto mb-2" />} title="Secure & Private" desc="Your data is protected with top-grade security." />
       </div>
+    </div>
+  )
+}
 
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-          How It Works
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              1
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Create Account</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Sign up with your email and set up your profile
-            </p>
-          </div>
-          
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              2
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Schedule Sessions</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Create your quiet study time blocks with custom durations
-            </p>
-          </div>
-          
-          <div className="p-6">
-            <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-              3
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Get Notified</h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Receive email reminders 10 minutes before each session
-            </p>
-          </div>
-        </div>
-      </div>
+function Feature({ icon, title, desc }: { icon: JSX.Element; title: string; desc: string }) {
+  return (
+    <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+      {icon}
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300">{desc}</p>
     </div>
   )
 }
