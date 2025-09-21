@@ -3,10 +3,15 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: {}, // keep as object, not boolean
+    serverActions: {}, // keep as object
   },
-  images: {
-    domains: ['images.unsplash.com'], // keep your allowed domains
+  async rewrites() {
+    return [
+      {
+        source: '/api/session',
+        destination: '/auth/login',
+      },
+    ];
   },
   webpack: (config) => {
     // Make Webpack recognize "@/..." imports
@@ -16,4 +21,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
