@@ -2,9 +2,10 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 
 export const createClient = async () => {
-  // Await cookies() if needed
-  const cookieStore = await cookies() // now cookieStore is ReadonlyRequestCookies
-  const token = cookieStore.get('sb-access-token')?.value ?? '' // fallback to empty string
+  const cookieStore = await cookies() // await here!
+  
+  // Now we can safely access .get()
+  const token = cookieStore.get('sb-access-token')?.value ?? ''
 
   return createSupabaseClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,7 +13,7 @@ export const createClient = async () => {
     {
       global: {
         headers: {
-          Authorization: `Bearer ${token}`, // always a string
+          Authorization: `Bearer ${token}`,
         },
       },
     }

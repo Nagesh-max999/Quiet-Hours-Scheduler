@@ -14,26 +14,29 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const getUserAndSessions = async () => {
-      const supabase = await createClient() // await here inside async function
+      const supabase = await createClient() // call async client here
 
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        setUser(user as User)
+      const { data: { user }, error } = await supabase.auth.getUser()
+      if (error || !user) {
+        setLoading(false)
+        return
+      }
 
-        const { data } = await supabase
-          .from('study_sessions')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('start_time', { ascending: true })
+      setUser(user as User)
 
-        if (data) {
-          setSessions(data)
-          const now = new Date()
-          const upcoming = data.filter(
-            session => new Date(session.start_time) > now && session.is_active
-          ).slice(0, 3)
-          setUpcomingSessions(upcoming)
-        }
+      const { data } = await supabase
+        .from('study_sessions')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('start_time', { ascending: true })
+
+      if (data) {
+        setSessions(data)
+        const now = new Date()
+        const upcoming = data
+          .filter(session => new Date(session.start_time) > now && session.is_active)
+          .slice(0, 3)
+        setUpcomingSessions(upcoming)
       }
 
       setLoading(false)
@@ -61,7 +64,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* ... rest of your JSX stays the same ... */}
+      {/* Your existing JSX for nav, stats, upcoming sessions */}
     </div>
   )
 }
