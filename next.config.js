@@ -1,19 +1,23 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-<<<<<<< HEAD
-    serverActions: {}, // must be an object, not a boolean
+    serverActions: {}, // keep the object version, as recommended
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/session',
+        destination: '/auth/login',
+      },
+    ];
+  },
+  webpack: (config) => {
+    // Make Webpack recognize "@/..." imports
+    config.resolve.alias['@'] = path.resolve(__dirname);
+    return config;
   },
 };
 
 module.exports = nextConfig;
-=======
-    serverActions: true,
-  },
-  images: {
-    domains: ['images.unsplash.com'],
-  },
-}
-
-module.exports = nextConfig
->>>>>>> b88f03c (Initial commit of Quiet Hours Scheduler project)
