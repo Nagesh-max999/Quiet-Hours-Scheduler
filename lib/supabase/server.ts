@@ -1,21 +1,6 @@
-import { createClient as createSupabaseClient } from '@supabase/supabase-js'
-import { cookies } from 'next/headers'
+import { createClient as createServerClient } from '@supabase/supabase-js'
 
-export const createClient = async () => {
-  const cookieStore = await cookies() // await here!
-  
-  // Now we can safely access .get()
-  const token = cookieStore.get('sb-access-token')?.value ?? ''
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
-  return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      global: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    }
-  )
-}
+export const createClient = () => createServerClient(supabaseUrl, supabaseServiceRoleKey)
