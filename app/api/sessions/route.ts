@@ -5,7 +5,8 @@ import { CreateSessionData } from '@/types'
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createClient()
+    // Await the async Supabase client
+    const supabase = await createClient()
     const { data: { user }, error: authError } = await supabase.auth.getUser()
 
     if (authError || !user) {
@@ -24,7 +25,6 @@ export async function GET(request: NextRequest) {
       .order('start_time', { ascending: true })
       .range(offset, offset + limit - 1)
 
-    // Filter by status if provided
     if (status === 'upcoming') {
       query = query.gt('start_time', new Date().toISOString()).eq('is_active', true)
     } else if (status === 'completed') {
@@ -48,7 +48,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createClient()
+    // Await the async Supabase client
+    const supabase = await createClient()
     const { data: { user }, error: authError } = await supabase.auth.getUser()
 
     if (authError || !user) {

@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import HomePage from './HomePage'
-
-export default function Page() {
-  return <HomePage />
-}
-=======
 import Link from 'next/link'
 import { Clock, Calendar, Bell, Shield } from 'lucide-react'
 
@@ -108,4 +101,3 @@ export default function HomePage() {
     </div>
   )
 }
->>>>>>> b88f03c (Initial commit of Quiet Hours Scheduler project)

@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-// app/layout.tsx
-import './globals.css'
-import type { ReactNode } from 'react'
-
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  )
-}
-=======
-import './globals.css'
+import '../global.css';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -37,4 +24,3 @@ export default function RootLayout({
     </html>
   )
 }
->>>>>>> b88f03c (Initial commit of Quiet Hours Scheduler project)
